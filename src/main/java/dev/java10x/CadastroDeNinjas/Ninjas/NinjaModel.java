@@ -1,19 +1,27 @@
-package dev.java10x.CadastroDeNinjas;
-
+package dev.java10x.CadastroDeNinjas.Ninjas;
+import dev.java10x.CadastroDeNinjas.Missoes.MissaoModel;
 import jakarta.persistence.*;
 
 // Entity transforma uma classe em uma entidade do DB
 // JPA -> Java Persistence API
 @Entity
-@Table(name = "tb_cadastro")
+@Table(name = "tb_ninja")
 public class NinjaModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    //@ManyToOne -> um ninja tem uma única missão
+    @ManyToOne
+    @JoinColumn(name = "missao_id") // Foreign Key
+    private MissaoModel missao;
 
     public NinjaModel() {
     }
